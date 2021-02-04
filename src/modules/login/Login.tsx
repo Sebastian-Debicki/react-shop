@@ -1,28 +1,24 @@
 import React from 'react';
+import styled from 'styled-components';
 import { Link } from 'react-router-dom';
 
-import { AppRoute } from 'routing/AppRoute.enum';
+import { AppRoute } from 'routing';
+import { Button, Input } from 'common';
 
 export const Login = () => {
   return (
     <>
       <Link to={AppRoute.home}>Products page</Link>
       <h2>Login</h2>
-      <form>
-        <div>
-          <label>
-            username:
-            <input name="username" />
-          </label>
-        </div>
-        <div>
-          <label>
-            password:
-            <input name="password" type="password" />
-          </label>
-        </div>
-        <button type="submit">submit</button>
-      </form>
+      <Form>
+        <Input label='Login' placeholder='Enter username' />
+        <Input label='Password' placeholder='Enter password' />
+        <Button variant='filled'>Normal button</Button>
+      </Form>
     </>
   );
 };
+
+const Form = styled.form`
+  width: 50%;
+`;

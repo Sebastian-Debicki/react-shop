@@ -9,6 +9,7 @@ export const theme = {
     },
     basic: {
       white: '#FFFFFF',
+      border: '#E0E2EA',
       disabled: '#9194A5',
     },
     text: {
@@ -18,5 +19,9 @@ export const theme = {
     background: {
       light: '#F0F1F5',
     },
+  },
+  borderRadius: {
+    small: `4px`,
+    normal: `8px`,
   },
 };
