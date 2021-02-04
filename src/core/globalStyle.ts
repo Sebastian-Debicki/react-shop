@@ -14,4 +14,8 @@ export const GlobalStyle = createGlobalStyle`
         font-weight: 600;
         background: ${theme.palette.background.light};;
     }
+
+    button, input {
+        font-family: 'Nunito', sans-serif;
+    }
 `;
