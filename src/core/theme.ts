@@ -17,11 +17,16 @@ export const theme = {
       light: '#9194A5',
     },
     background: {
-      light: '#F0F1F5',
+      light: '#F2F2F2',
     },
   },
   borderRadius: {
-    small: `4px`,
-    normal: `8px`,
+    small: '4px',
+    normal: '8px',
+  },
+  fontSize: {
+    small: '1.4rem',
+    normal: '1.6rem',
+    header2: '3rem',
   },
 };
