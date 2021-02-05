@@ -7,21 +7,22 @@ interface Props {
   variant: 'filled' | 'outline';
 }
 
-export const Button: React.FC<Props> = ({ children, variant }) => {
+export const Button: React.FC<Props> = ({ children, variant, ...rest }) => {
   const button = {
-    filled: <FilledButton>{children}</FilledButton>,
-    outline: <OutlineButton>{children}</OutlineButton>,
+    filled: <FilledButton {...rest}>{children}</FilledButton>,
+    outline: <OutlineButton {...rest}>{children}</OutlineButton>,
   }[variant];
 
   return button;
 };
 
 const button = styled.button`
+  display: block;
   border: none;
   width: 100%;
-  padding: 1.6rem;
+  padding: ${theme.fontSize.normal};
   border-radius: ${theme.borderRadius.small};
-  font-size: 1.4rem;
+  font-size: ${theme.fontSize.small};
   font-family: 'Nunito', sans-serif;
 `;
 
