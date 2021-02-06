@@ -1,50 +1,46 @@
 import React, { InputHTMLAttributes } from 'react';
-import styled from 'styled-components';
+import { makeStyles } from '@material-ui/core';
 
-import { theme } from 'core';
+import { globalStyles } from 'core';
 
 interface Props extends InputHTMLAttributes<HTMLInputElement> {
   label?: string;
-  placeholderColor?: 'light' | 'primary';
+  placeholderColor?: 'light' | 'dark';
+  containerStyles?: string;
 }
 
 export const Input: React.FC<Props> = ({
   label,
   placeholderColor = 'light',
+  containerStyles,
   ...rest
-}) => (
-  <Container>
-    {label && <Label>{label}</Label>}
-    <StyledInput placeholderColor={placeholderColor} {...rest} />
-  </Container>
-);
+}) => {
+  const classes = useStyles();
 
-const Container = styled.div`
-  display: flex;
-  flex-direction: column;
-`;
+  return (
+    <div className={`${classes.container} ${containerStyles}`}>
+      {label && <label className={classes.label}>{label}</label>}
+      <input className={`${classes.input}`} {...rest} />
+    </div>
+  );
+};
 
-const StyledInput = styled.input<Pick<Props, 'placeholderColor'>>`
-  height: 4.8rem;
-  flex: 1;
-  padding: 1.6rem;
-  font-size: ${theme.fontSize.small};
-  border-radius: ${theme.borderRadius.normal};
-  border: 1px solid ${theme.palette.basic.border};
-
-  ::placeholder,
-  ::-webkit-input-placeholder {
-    color: ${(props) =>
-      props.placeholderColor === 'primary'
-        ? theme.palette.primary.main
-        : theme.palette.basic.disabled};
-    font-size: ${theme.fontSize.small};
-    opacity: 1;
-  }
-`;
-
-const Label = styled.label`
-  display: block;
-  font-size: ${theme.fontSize.small};
-  margin-bottom: 0.8rem;
-`;
+const useStyles = makeStyles((theme) => ({
+  container: {
+    display: 'flex',
+    flexDirection: 'column',
+  },
+  input: {
+    height: '4.8rem',
+    flex: '1',
+    padding: '1.6rem',
+    fontSize: globalStyles.fontSize.small,
+    borderRadius: globalStyles.borderRadius.normal,
+    border: `1px solid ${globalStyles.palette.basic.border}`,
+  },
+  label: {
+    display: 'block',
+    fontSize: globalStyles.fontSize.small,
+    marginBottom: '0.8rem',
+  },
+}));

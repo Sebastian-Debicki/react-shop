@@ -1,38 +1,52 @@
 import React from 'react';
-import styled from 'styled-components';
+import { makeStyles } from '@material-ui/core';
 
-import { theme } from 'core';
+import { globalStyles } from 'core';
 
 interface Props {
   variant: 'filled' | 'outline';
+  className: string;
 }
 
-export const Button: React.FC<Props> = ({ children, variant, ...rest }) => {
-  const button = {
-    filled: <FilledButton {...rest}>{children}</FilledButton>,
-    outline: <OutlineButton {...rest}>{children}</OutlineButton>,
+export const Button: React.FC<Props> = ({
+  children,
+  variant,
+  className,
+  ...rest
+}) => {
+  const classes = useStyles();
+
+  const type = {
+    filled: classes.filled,
+    outline: classes.outline,
   }[variant];
 
-  return button;
+  return (
+    <button className={`${classes.base} ${type} ${className}`}>
+      {children}
+    </button>
+  );
 };
 
-const button = styled.button`
-  display: block;
-  border: none;
-  width: 100%;
-  padding: ${theme.fontSize.normal};
-  border-radius: ${theme.borderRadius.small};
-  font-size: ${theme.fontSize.small};
-  font-family: 'Nunito', sans-serif;
-`;
+const useStyles = makeStyles((theme) => ({
+  base: {
+    display: 'block',
+    border: 'none',
+    width: '100%',
+    padding: '1.6rem',
+    borderRadius: globalStyles.borderRadius.small,
+    fontSize: globalStyles.fontSize.small,
+    fontFamily: 'Nunito, sans-serif',
+  },
 
-const FilledButton = styled(button)`
-  background-color: ${theme.palette.primary.main};
-  color: ${theme.palette.basic.white};
-`;
+  filled: {
+    backgroundColor: globalStyles.palette.primary.main,
+    color: globalStyles.palette.basic.white,
+  },
 
-const OutlineButton = styled(button)`
-  background-color: ${theme.palette.basic.white};
-  border: 1px solid ${theme.palette.primary.main};
-  color: 1px solid ${theme.palette.primary.main};
-`;
+  outline: {
+    backgroundColor: globalStyles.palette.basic.white,
+    border: `1px solid ${globalStyles.palette.primary.main}`,
+    color: globalStyles.palette.primary.main,
+  },
+}));
