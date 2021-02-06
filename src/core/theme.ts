@@ -1,4 +1,6 @@
-export const theme = {
+import { createMuiTheme } from '@material-ui/core';
+
+export const globalStyles = {
   palette: {
     primary: {
       main: '#4460F7',
@@ -30,3 +32,22 @@ export const theme = {
     header2: '3rem',
   },
 };
+
+export const theme = createMuiTheme({
+  overrides: {
+    MuiCssBaseline: {
+      '@global': {
+        html: {
+          fontSize: '62.5%',
+          fontFamily: 'Nunito, sans-serif',
+        },
+        button: {
+          fontFamily: 'Nunito, sans-serif',
+        },
+        input: {
+          fontFamily: 'Nunito, sans-serif',
+        },
+      },
+    },
+  },
+});

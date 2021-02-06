@@ -4,4 +4,4 @@ export type AppState = {
   products: products.State;
 };
 
-export const productsSelector = (state: AppState) => state.products;
+export const productsSelector = ({ products }: AppState) => products.products;

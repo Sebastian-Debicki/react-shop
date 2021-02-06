@@ -1,15 +1,16 @@
 import React from 'react';
 import { BrowserRouter as Router } from 'react-router-dom';
 import { Provider } from 'react-redux';
+import { CssBaseline, ThemeProvider } from '@material-ui/core';
 
-import { GlobalStyle } from 'core';
 import { store } from 'store';
+import { theme } from 'core';
 
 export const AppProviders: React.FC = ({ children }) => (
   <Provider store={store}>
-    <Router>
-      <GlobalStyle />
-      {children}
-    </Router>
+    <ThemeProvider theme={theme}>
+      <CssBaseline />
+      <Router>{children}</Router>
+    </ThemeProvider>
   </Provider>
 );

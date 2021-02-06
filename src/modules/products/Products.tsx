@@ -4,10 +4,11 @@ import { Link } from 'react-router-dom';
 
 import { AppRoute } from 'routing';
 import { getProducts, productsSelector } from 'store';
+import { Navbar } from 'common';
 
 export const Products = () => {
   const dispatch = useDispatch();
-  const state = useSelector(productsSelector);
+  const products = useSelector(productsSelector);
 
   useEffect(() => {
     dispatch(getProducts());
@@ -15,13 +16,16 @@ export const Products = () => {
 
   return (
     <>
-      {state.products.loading ? (
+      {products.loading ? (
         <p>loading...</p>
+      ) : products.errored ? (
+        <p>error</p>
       ) : (
-        <>
+        <div>
+          <Navbar />
           <h2>Products page</h2>
           <Link to={AppRoute.login}> Login </Link>
-        </>
+        </div>
       )}
     </>
   );
