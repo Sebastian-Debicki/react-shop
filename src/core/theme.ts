@@ -1,4 +1,4 @@
-import { createMuiTheme, Theme } from '@material-ui/core';
+import { createMuiTheme } from '@material-ui/core';
 
 export const globalStyles = {
   // palette: {
@@ -29,6 +29,7 @@ export const globalStyles = {
   fontSize: {
     small: '1.4rem',
     normal: '1.6rem',
+    big: '1.8rem',
     header2: '3rem',
   },
 };

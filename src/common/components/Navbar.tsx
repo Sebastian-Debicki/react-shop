@@ -2,11 +2,11 @@ import React from 'react';
 import { useHistory } from 'react-router-dom';
 import { makeStyles } from '@material-ui/core';
 
-import { ReactComponent as Logo } from 'assets/icons/logo.svg';
 import avatar from 'assets/images/avatar.png';
 import { Input } from './Input';
 import { Checkbox } from './Checkbox';
 import { Button } from './Button';
+import { Logo } from 'assets/icons';
 import { AppRoute } from 'routing';
 
 export const Navbar: React.FC = () => {
@@ -26,7 +26,7 @@ export const Navbar: React.FC = () => {
         Log in
       </Button>
 
-      <Input placeholder='Search' containerStyles={classes.inputContainer} />
+      <Input placeholder='Search' containerClassName={classes.inputContainer} />
 
       <div className={classes.checkboxContainer}>
         <Checkbox checked={true} label='Active' onChange={() => {}} />
@@ -38,7 +38,7 @@ export const Navbar: React.FC = () => {
 
 const useStyles = makeStyles((theme) => ({
   container: {
-    position: 'fixed',
+    position: 'sticky',
     top: '0',
     left: '0',
     right: '0',

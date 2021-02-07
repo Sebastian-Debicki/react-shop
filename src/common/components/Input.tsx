@@ -6,19 +6,19 @@ import { globalStyles } from 'core';
 interface Props extends InputHTMLAttributes<HTMLInputElement> {
   label?: string;
   placeholderColor?: 'light' | 'dark';
-  containerStyles?: string;
+  containerClassName?: string;
 }
 
 export const Input: React.FC<Props> = ({
   label,
   placeholderColor = 'light',
-  containerStyles,
+  containerClassName,
   ...rest
 }) => {
   const classes = useStyles();
 
   return (
-    <div className={`${classes.container} ${containerStyles}`}>
+    <div className={`${classes.container} ${containerClassName}`}>
       {label && <label className={classes.label}>{label}</label>}
       <input className={`${classes.input}`} {...rest} />
     </div>
