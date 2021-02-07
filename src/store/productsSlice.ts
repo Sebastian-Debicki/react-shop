@@ -40,10 +40,10 @@ const slice = createSlice({
 
 const { actions } = slice;
 
-export const getProducts = () => (dispatch: Dispatch) => {
+export const getProducts = (page: number) => (dispatch: Dispatch) => {
   dispatch(actions.getProductsRequest());
   productsService
-    .getProducts()
+    .getProducts(page)
     .then((res) => {
       dispatch(actions.getProductsSucceed(res.data));
     })

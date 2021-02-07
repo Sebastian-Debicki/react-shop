@@ -42,6 +42,7 @@ const useStyles = makeStyles((theme) => ({
     top: '0',
     left: '0',
     right: '0',
+    zIndex: 100,
     backgroundColor: theme.palette.common.white,
     padding: '4.8rem 2.4rem 3.2rem',
     display: 'grid',
@@ -53,6 +54,10 @@ const useStyles = makeStyles((theme) => ({
       padding: '0 2.4rem',
       gridTemplateColumns: 'repeat(5, 1fr)',
       gridTemplateRows: '14.4rem',
+    },
+
+    [theme.breakpoints.up('lg')]: {
+      padding: '0 10.8rem',
     },
   },
   checkboxContainer: {

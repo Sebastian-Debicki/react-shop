@@ -15,7 +15,11 @@ export const ProductItem: React.FC<Prop> = ({ product }) => {
 
   return (
     <li className={classes.productContainer}>
-      <img src={product.image} className={classes.image} alt='product' />
+      <div className={classes.imageContainer}>
+        {product.promo && <p className={classes.promo}>Promo</p>}
+
+        <img src={product.image} className={classes.image} alt='product' />
+      </div>
 
       <div className={classes.descriptionContainer}>
         <div>
@@ -46,6 +50,7 @@ const useStyles = makeStyles((theme) => ({
     borderTopLeftRadius: globalStyles.borderRadius.normal,
     borderTopRightRadius: globalStyles.borderRadius.normal,
     width: '100%',
+    minHeight: '27rem',
   },
   descriptionContainer: {
     padding: '0.8rem 1.6rem 2.4rem',
@@ -66,5 +71,17 @@ const useStyles = makeStyles((theme) => ({
   },
   rating: {
     marginBottom: '1.8rem',
+  },
+  promo: {
+    fontSize: globalStyles.fontSize.small,
+    padding: '0.4rem 1.6rem',
+    backgroundColor: theme.palette.secondary.main,
+    color: theme.palette.common.white,
+    position: 'absolute',
+    top: '2.5rem',
+    left: '0',
+  },
+  imageContainer: {
+    position: 'relative',
   },
 }));

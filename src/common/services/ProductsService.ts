@@ -7,7 +7,7 @@ import { apiRoutes } from 'core';
 export class ProductsService {
   constructor(private httpService: HttpService) {}
 
-  getProducts(): AxiosPromise<PaginatedRes<Product>> {
-    return this.httpService.GET(`${apiRoutes.product}?limit=8`);
+  getProducts(page: number): AxiosPromise<PaginatedRes<Product>> {
+    return this.httpService.GET(`${apiRoutes.product}?limit=8&page=${page}`);
   }
 }
