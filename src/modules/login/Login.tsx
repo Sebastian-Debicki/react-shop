@@ -41,6 +41,7 @@ export const Login = () => {
 
 const useStyles = makeStyles((theme) => ({
   mainContainer: {
+    backgroundColor: theme.palette.common.white,
     height: '100vh',
     display: 'grid',
     gridTemplateColumns: '1fr',
@@ -79,7 +80,7 @@ const useStyles = makeStyles((theme) => ({
       gridTemplateRows: '25vh 75vh',
     },
 
-    [theme.breakpoints.up('xl')]: {
+    [theme.breakpoints.up('lg')]: {
       justifyContent: 'flex-start',
       marginLeft: '15rem',
     },
@@ -94,11 +95,11 @@ const useStyles = makeStyles((theme) => ({
     marginBottom: '2.2rem',
   },
   forgotButton: {
-    color: globalStyles.palette.basic.disabled,
+    color: theme.palette.text.secondary,
     marginTop: '1.6rem',
     textDecoration: 'underline',
     border: 'none',
-    backgroundColor: 'none',
+    backgroundColor: 'transparent',
     fontSize: globalStyles.fontSize.small,
   },
 }));
