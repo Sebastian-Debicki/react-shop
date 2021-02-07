@@ -2,8 +2,8 @@ import React from 'react';
 import { useHistory } from 'react-router-dom';
 import { makeStyles } from '@material-ui/core';
 
-import { ReactComponent as Logo } from 'assets/icons/logo.svg';
-import loginImage from 'assets/images/Bitmap.png';
+import loginImage from 'assets/images/loginImage.png';
+import { Logo } from 'assets/icons';
 import { AppRoute } from 'routing';
 import { Input, Button } from 'common';
 import { globalStyles } from 'core';
@@ -26,7 +26,7 @@ export const Login = () => {
           <Input
             label='Login'
             placeholder='Enter username'
-            containerStyles={classes.input}
+            containerClassName={classes.input}
           />
           <Input label='Password' placeholder='Enter password' />
           <Button className={classes.button} variant='filled'>

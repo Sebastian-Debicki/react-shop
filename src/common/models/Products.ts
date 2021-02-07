@@ -9,10 +9,18 @@ export interface Product {
 }
 
 export interface PaginatedRes<T> {
-  itemCount: number;
-  total: number;
-  pageCout: number;
-  next: string;
-  previous: string;
+  meta: {
+    totalItems: number;
+    itemCount: number;
+    itemsPerPage: string;
+    totalPages: number;
+    currentPage: number;
+  };
+  links: {
+    first: string;
+    previous: string;
+    next: string;
+    last: string;
+  };
   items: T[];
 }
