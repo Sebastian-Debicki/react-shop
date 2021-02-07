@@ -1,19 +1,30 @@
 import React from 'react';
+import { useHistory } from 'react-router-dom';
 import { makeStyles } from '@material-ui/core';
 
 import { ReactComponent as Logo } from 'assets/icons/logo.svg';
 import avatar from 'assets/images/avatar.png';
 import { Input } from './Input';
 import { Checkbox } from './Checkbox';
-import { globalStyles } from 'core';
+import { Button } from './Button';
+import { AppRoute } from 'routing';
 
 export const Navbar: React.FC = () => {
+  const history = useHistory();
   const classes = useStyles();
 
   return (
     <nav className={classes.container}>
       <Logo />
-      <img src={avatar} className={classes.avatar} alt='user avatar' />
+      {/* <img src={avatar} className={classes.avatar} alt='user avatar' /> */}
+      <Button
+        variant='outline'
+        size='small'
+        className={classes.loginButton}
+        onClick={() => history.push(AppRoute.login)}
+      >
+        Log in
+      </Button>
 
       <Input placeholder='Search' containerStyles={classes.inputContainer} />
 
@@ -27,7 +38,11 @@ export const Navbar: React.FC = () => {
 
 const useStyles = makeStyles((theme) => ({
   container: {
-    backgroundColor: globalStyles.palette.basic.white,
+    position: 'fixed',
+    top: '0',
+    left: '0',
+    right: '0',
+    backgroundColor: theme.palette.common.white,
     padding: '4.8rem 2.4rem 3.2rem',
     display: 'grid',
     gridTemplateColumns: '1fr 1fr',
@@ -68,5 +83,9 @@ const useStyles = makeStyles((theme) => ({
       gridRow: '1/2',
       marginRight: '2.4rem',
     },
+  },
+  loginButton: {
+    width: '8.8rem',
+    justifySelf: 'flex-end',
   },
 }));

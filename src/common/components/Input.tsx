@@ -36,7 +36,7 @@ const useStyles = makeStyles((theme) => ({
     padding: '1.6rem',
     fontSize: globalStyles.fontSize.small,
     borderRadius: globalStyles.borderRadius.normal,
-    border: `1px solid ${globalStyles.palette.basic.border}`,
+    border: `1px solid ${theme.palette.action.active}`,
   },
   label: {
     display: 'block',
