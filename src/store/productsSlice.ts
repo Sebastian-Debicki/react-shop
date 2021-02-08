@@ -1,7 +1,7 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 
 import { Dispatch } from 'store';
-import { Product, PaginatedRes, productsService } from 'common';
+import { Product, PaginatedRes, productsService, ProductsQuery } from 'common';
 
 export type State = {
   products: {
@@ -40,10 +40,10 @@ const slice = createSlice({
 
 const { actions } = slice;
 
-export const getProducts = (page: number) => (dispatch: Dispatch) => {
+export const getProducts = (query: ProductsQuery) => (dispatch: Dispatch) => {
   dispatch(actions.getProductsRequest());
   productsService
-    .getProducts(page)
+    .getProducts(query)
     .then((res) => {
       dispatch(actions.getProductsSucceed(res.data));
     })

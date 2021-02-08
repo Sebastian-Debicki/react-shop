@@ -24,3 +24,11 @@ export interface PaginatedRes<T> {
   };
   items: T[];
 }
+
+export interface ProductsQuery {
+  page: number;
+  search: string;
+  limit: number;
+  promo: boolean;
+  active: boolean;
+}

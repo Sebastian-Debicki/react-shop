@@ -9,7 +9,17 @@ import { Button } from './Button';
 import { Logo } from 'assets/icons';
 import { AppRoute } from 'routing';
 
-export const Navbar: React.FC = () => {
+interface Props {
+  onInputChange: (value: string) => void;
+  onCheckActive: (value: boolean) => void;
+  onCheckPromo: (value: boolean) => void;
+}
+
+export const Navbar: React.FC<Props> = ({
+  onInputChange,
+  onCheckActive,
+  onCheckPromo,
+}) => {
   const history = useHistory();
   const classes = useStyles();
 
@@ -26,11 +36,23 @@ export const Navbar: React.FC = () => {
         Log in
       </Button>
 
-      <Input placeholder='Search' containerClassName={classes.inputContainer} />
+      <Input
+        placeholder='Search'
+        onChange={(e) => onInputChange(e.target.value)}
+        containerClassName={classes.inputContainer}
+      />
 
       <div className={classes.checkboxContainer}>
-        <Checkbox checked={true} label='Active' onChange={() => {}} />
-        <Checkbox checked={true} label='Promo' onChange={() => {}} />
+        <Checkbox
+          checked={true}
+          label='Active'
+          onChange={(e) => onCheckActive(e.target.checked)}
+        />
+        <Checkbox
+          checked={true}
+          label='Promo'
+          onChange={(e) => onCheckPromo(e.target.checked)}
+        />
       </div>
     </nav>
   );

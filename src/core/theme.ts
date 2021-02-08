@@ -9,6 +9,7 @@ export const globalStyles = {
     small: '1.4rem',
     normal: '1.6rem',
     big: '1.8rem',
+    header3: '2.4rem',
     header2: '3rem',
   },
 };
@@ -34,19 +35,18 @@ export const theme = createMuiTheme({
     },
   },
 
+  typography: {
+    fontFamily: ['Nunito'].join(','),
+  },
+
   overrides: {
     MuiCssBaseline: {
       '@global': {
         html: {
           fontSize: '62.5%',
-          fontFamily: 'Nunito, sans-serif',
+        },
+        body: {
           fontWeight: '600',
-        },
-        button: {
-          fontFamily: 'Nunito, sans-serif',
-        },
-        input: {
-          fontFamily: 'Nunito, sans-serif',
         },
       },
     },

@@ -25,10 +25,12 @@ export const Pagination: React.FC<Props> = ({
   return (
     <nav className={classes.container}>
       <ul className={classes.list}>
-        {items.map(({ page, type, selected, ...item }) => {
-          if (type === 'start-ellipsis' || type === 'end-ellipsis') return '…';
+        {items.map(({ page, type, selected, ...item }, index) => {
+          let children = null;
+          if (type === 'start-ellipsis' || type === 'end-ellipsis')
+            children = '…';
           else if (type === 'page')
-            return (
+            children = (
               <button
                 className={`${classes.button} ${classes.numberButton} ${
                   selected && classes.numberButtonActive
@@ -40,7 +42,7 @@ export const Pagination: React.FC<Props> = ({
               </button>
             );
           else
-            return (
+            children = (
               <button
                 className={`${classes.button} ${classes.lastFirstButton}`}
                 type='button'
@@ -49,6 +51,8 @@ export const Pagination: React.FC<Props> = ({
                 {type}
               </button>
             );
+
+          return <li key={index}>{children}</li>;
         })}
       </ul>
     </nav>
