@@ -1,16 +1,15 @@
 import React from 'react';
 import { makeStyles } from '@material-ui/core';
 
-import { Product } from 'common';
+import { Product, Button, Rating } from 'common';
 import { globalStyles } from 'core';
-import { Button } from './Button';
-import { Rating } from './Rating';
 
 interface Prop {
   product: Product;
+  onButtonClick: (product: Product) => void;
 }
 
-export const ProductItem: React.FC<Prop> = ({ product }) => {
+export const ProductItem: React.FC<Prop> = ({ product, onButtonClick }) => {
   const classes = useStyles();
 
   return (
@@ -30,7 +29,9 @@ export const ProductItem: React.FC<Prop> = ({ product }) => {
         <div>
           <Rating rating={product.rating} containerClassName={classes.rating} />
 
-          <Button variant='filled'>Show details</Button>
+          <Button variant='filled' onClick={() => onButtonClick(product)}>
+            Show details
+          </Button>
         </div>
       </div>
     </li>
@@ -46,11 +47,15 @@ const useStyles = makeStyles((theme) => ({
     flexDirection: 'column',
     flex: '1',
   },
+  imageContainer: {
+    position: 'relative',
+  },
   image: {
     borderTopLeftRadius: globalStyles.borderRadius.normal,
     borderTopRightRadius: globalStyles.borderRadius.normal,
     width: '100%',
-    minHeight: '27rem',
+    objectFit: 'cover',
+    objectPosition: '20% 10%',
   },
   descriptionContainer: {
     padding: '0.8rem 1.6rem 2.4rem',
@@ -80,8 +85,5 @@ const useStyles = makeStyles((theme) => ({
     position: 'absolute',
     top: '2.5rem',
     left: '0',
-  },
-  imageContainer: {
-    position: 'relative',
   },
 }));

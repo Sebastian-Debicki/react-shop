@@ -3,41 +3,71 @@ import { useSelector, useDispatch } from 'react-redux';
 import { makeStyles } from '@material-ui/core';
 
 import { getProducts, productsSelector } from 'store';
-import { Navbar, Pagination, ProductItem, Spinner } from 'common';
+import { Modal, Navbar, Pagination, Product, Spinner } from 'common';
+import { ProductItem, ProductDetails } from './components';
 
 export const Products = () => {
   const dispatch = useDispatch();
-  const products = useSelector(productsSelector);
-  const [page, setPage] = useState(1);
+  const productsState = useSelector(productsSelector);
+  const [choosenProduct, setChoosenProduct] = useState<Product | undefined>();
+  const [query, setQuery] = useState({
+    limit: 8,
+    page: 1,
+    search: '',
+    active: false,
+    promo: false,
+  });
 
-  const classes = useStyles(products.loading);
+  const classes = useStyles();
 
   useEffect(() => {
-    dispatch(getProducts(page));
-  }, [dispatch, page]);
+    dispatch(getProducts(query));
+  }, [dispatch, query]);
 
   return (
     <>
       <section className={classes.mainContainer}>
         <div>
-          <Navbar />
+          <Navbar
+            onInputChange={(search) => setQuery({ ...query, search })}
+            onCheckActive={(active) => setQuery({ ...query, active })}
+            onCheckPromo={(promo) => setQuery({ ...query, promo })}
+          />
 
-          {products.loading ? (
+          {productsState.loading ? (
             <Spinner />
           ) : (
             <ul className={classes.productsContainer}>
-              {products.loaded?.items.map((product) => (
-                <ProductItem key={product.id} product={product} />
+              {productsState.products?.items.map((product) => (
+                <ProductItem
+                  key={product.id}
+                  product={product}
+                  onButtonClick={(choosenProduct: Product) =>
+                    setChoosenProduct(choosenProduct)
+                  }
+                />
               ))}
             </ul>
           )}
         </div>
 
         <Pagination
-          numberOfPages={products.loaded?.meta.totalPages}
-          onChangePage={setPage}
+          numberOfPages={productsState.products?.meta.totalPages}
+          onChangePage={(page) => setQuery({ ...query, page })}
         />
       </section>
+
+      <Modal
+        open={choosenProduct !== undefined}
+        onClose={() => setChoosenProduct(undefined)}
+      >
+        {choosenProduct && (
+          <ProductDetails
+            product={choosenProduct}
+            onClose={() => setChoosenProduct(undefined)}
+          />
+        )}
+      </Modal>
     </>
   );
 };
@@ -71,8 +101,5 @@ const useStyles = makeStyles((theme) => ({
       margin: '5.6rem 10.8rem',
       gridTemplateColumns: 'repeat(4, 1fr)',
     },
-  },
-  pagination: {
-    display: 'none',
   },
 }));

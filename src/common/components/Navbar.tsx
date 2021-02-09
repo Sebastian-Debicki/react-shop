@@ -2,21 +2,29 @@ import React from 'react';
 import { useHistory } from 'react-router-dom';
 import { makeStyles } from '@material-ui/core';
 
-import avatar from 'assets/images/avatar.png';
 import { Input } from './Input';
 import { Checkbox } from './Checkbox';
 import { Button } from './Button';
 import { Logo } from 'assets/icons';
 import { AppRoute } from 'routing';
 
-export const Navbar: React.FC = () => {
+interface Props {
+  onInputChange: (value: string) => void;
+  onCheckActive: (value: boolean) => void;
+  onCheckPromo: (value: boolean) => void;
+}
+
+export const Navbar: React.FC<Props> = ({
+  onInputChange,
+  onCheckActive,
+  onCheckPromo,
+}) => {
   const history = useHistory();
   const classes = useStyles();
 
   return (
     <nav className={classes.container}>
       <Logo />
-      {/* <img src={avatar} className={classes.avatar} alt='user avatar' /> */}
       <Button
         variant='outline'
         size='small'
@@ -26,11 +34,23 @@ export const Navbar: React.FC = () => {
         Log in
       </Button>
 
-      <Input placeholder='Search' containerClassName={classes.inputContainer} />
+      <Input
+        placeholder='Search'
+        onChange={(e) => onInputChange(e.target.value)}
+        containerClassName={classes.inputContainer}
+      />
 
       <div className={classes.checkboxContainer}>
-        <Checkbox checked={true} label='Active' onChange={() => {}} />
-        <Checkbox checked={true} label='Promo' onChange={() => {}} />
+        <Checkbox
+          checked={true}
+          label='Active'
+          onChange={(e) => onCheckActive(e.target.checked)}
+        />
+        <Checkbox
+          checked={true}
+          label='Promo'
+          onChange={(e) => onCheckPromo(e.target.checked)}
+        />
       </div>
     </nav>
   );

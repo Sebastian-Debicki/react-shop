@@ -1,49 +1,43 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 
 import { Dispatch } from 'store';
-import { Product, PaginatedRes, productsService } from 'common';
+import { Product, PaginatedRes, productsService, ProductsQuery } from 'common';
 
 export type State = {
-  products: {
-    loading: boolean;
-    loaded?: PaginatedRes<Product>;
-    errored?: string;
-  };
+  loading: boolean;
+  products?: PaginatedRes<Product>;
+  error?: string;
 };
 
 export const initialState: State = {
-  products: {
-    loading: false,
-  },
+  loading: false,
 };
 
 const slice = createSlice({
-  name: 'auth',
+  name: 'products',
   initialState,
   reducers: {
     getProductsRequest(state) {
-      state.products.loading = true;
+      return { ...state, loading: true };
     },
     getProductsSucceed(
       state,
       { payload }: PayloadAction<PaginatedRes<Product>>
     ) {
-      state.products.loading = false;
-      state.products.loaded = payload;
+      return { ...state, loading: false, products: payload };
     },
     getProductsFailed(state, { payload }: PayloadAction<string>) {
-      state.products.loading = false;
-      state.products.errored = payload;
+      return { ...state, loading: false, error: payload };
     },
   },
 });
 
 const { actions } = slice;
 
-export const getProducts = (page: number) => (dispatch: Dispatch) => {
+export const getProducts = (query: ProductsQuery) => (dispatch: Dispatch) => {
   dispatch(actions.getProductsRequest());
   productsService
-    .getProducts(page)
+    .getProducts(query)
     .then((res) => {
       dispatch(actions.getProductsSucceed(res.data));
     })
