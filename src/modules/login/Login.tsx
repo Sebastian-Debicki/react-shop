@@ -1,6 +1,6 @@
 import React from 'react';
 import { useHistory } from 'react-router-dom';
-import { makeStyles } from '@material-ui/core';
+import { makeStyles, Typography } from '@material-ui/core';
 
 import loginImage from 'assets/images/loginImage.png';
 import { Logo } from 'assets/icons';
@@ -22,7 +22,9 @@ export const Login = () => {
           className={classes.logo}
         />
         <form className={classes.form}>
-          <h2 className={classes.header}>Login</h2>
+          <Typography variant='h2' className={classes.header}>
+            Login
+          </Typography>
           <Input
             label='Login'
             placeholder='Enter username'
@@ -68,6 +70,7 @@ const useStyles = makeStyles((theme) => ({
   },
   header: {
     fontSize: globalStyles.fontSize.header2,
+    marginBottom: '3rem',
   },
   formContainer: {
     display: 'grid',

@@ -5,3 +5,4 @@ export { ReactComponent as Spinner } from './spinner.svg';
 export { ReactComponent as Close } from './close.svg';
 export { ReactComponent as Checked } from './checked.svg';
 export { ReactComponent as Unchecked } from './unchecked.svg';
+export { ReactComponent as Empty } from './empty.svg';

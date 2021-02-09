@@ -18,7 +18,7 @@ const slice = createSlice({
   initialState,
   reducers: {
     getProductsRequest(state) {
-      return { ...state, loading: true };
+      return { ...state, loading: state.products === undefined ? true : false };
     },
     getProductsSucceed(
       state,
