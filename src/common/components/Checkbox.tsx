@@ -7,6 +7,7 @@ import {
 } from '@material-ui/core';
 
 import { Checked, Unchecked } from 'assets/icons';
+import { globalStyles } from 'core';
 
 interface Props extends CheckboxProps {
   label: string;
@@ -23,7 +24,11 @@ export const Checkbox: React.FC<Props> = ({ checked, label, ...rest }) => {
           {...rest}
           name={label}
           color='primary'
-          checkedIcon={<Checked />}
+          checkedIcon={
+            <div className={classes.checkbox}>
+              <Checked color='black' />
+            </div>
+          }
           icon={<Unchecked />}
         />
       }
@@ -32,4 +37,14 @@ export const Checkbox: React.FC<Props> = ({ checked, label, ...rest }) => {
   );
 };
 
-const useStyles = makeStyles((theme) => ({}));
+const useStyles = makeStyles((theme) => ({
+  checkbox: {
+    width: '2.4rem',
+    height: '2.4rem',
+    backgroundColor: theme.palette.primary.main,
+    borderRadius: globalStyles.borderRadius.small,
+    display: 'flex',
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+}));

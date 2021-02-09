@@ -47,11 +47,15 @@ const useStyles = makeStyles((theme) => ({
     flexDirection: 'column',
     flex: '1',
   },
+  imageContainer: {
+    position: 'relative',
+  },
   image: {
     borderTopLeftRadius: globalStyles.borderRadius.normal,
     borderTopRightRadius: globalStyles.borderRadius.normal,
     width: '100%',
-    minHeight: '27rem',
+    objectFit: 'cover',
+    objectPosition: '20% 10%',
   },
   descriptionContainer: {
     padding: '0.8rem 1.6rem 2.4rem',
@@ -81,8 +85,5 @@ const useStyles = makeStyles((theme) => ({
     position: 'absolute',
     top: '2.5rem',
     left: '0',
-  },
-  imageContainer: {
-    position: 'relative',
   },
 }));

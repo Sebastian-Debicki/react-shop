@@ -8,7 +8,7 @@ import { ProductItem, ProductDetails } from './components';
 
 export const Products = () => {
   const dispatch = useDispatch();
-  const products = useSelector(productsSelector);
+  const productsState = useSelector(productsSelector);
   const [choosenProduct, setChoosenProduct] = useState<Product | undefined>();
   const [query, setQuery] = useState({
     limit: 8,
@@ -34,11 +34,11 @@ export const Products = () => {
             onCheckPromo={(promo) => setQuery({ ...query, promo })}
           />
 
-          {products.loading ? (
+          {productsState.loading ? (
             <Spinner />
           ) : (
             <ul className={classes.productsContainer}>
-              {products.loaded?.items.map((product) => (
+              {productsState.products?.items.map((product) => (
                 <ProductItem
                   key={product.id}
                   product={product}
@@ -52,7 +52,7 @@ export const Products = () => {
         </div>
 
         <Pagination
-          numberOfPages={products.loaded?.meta.totalPages}
+          numberOfPages={productsState.products?.meta.totalPages}
           onChangePage={(page) => setQuery({ ...query, page })}
         />
       </section>

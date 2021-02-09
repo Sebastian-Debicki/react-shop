@@ -2,7 +2,6 @@ import React from 'react';
 import { useHistory } from 'react-router-dom';
 import { makeStyles } from '@material-ui/core';
 
-import avatar from 'assets/images/avatar.png';
 import { Input } from './Input';
 import { Checkbox } from './Checkbox';
 import { Button } from './Button';
@@ -26,7 +25,6 @@ export const Navbar: React.FC<Props> = ({
   return (
     <nav className={classes.container}>
       <Logo />
-      {/* <img src={avatar} className={classes.avatar} alt='user avatar' /> */}
       <Button
         variant='outline'
         size='small'

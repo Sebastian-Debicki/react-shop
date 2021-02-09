@@ -34,7 +34,10 @@ const useStyles = makeStyles((theme) => ({
     position: 'relative',
     backgroundColor: theme.palette.common.white,
     borderRadius: globalStyles.borderRadius.normal,
-    width: '56rem',
+
+    [theme.breakpoints.up('sm')]: {
+      width: '56rem',
+    },
   },
   image: {
     borderTopLeftRadius: globalStyles.borderRadius.normal,

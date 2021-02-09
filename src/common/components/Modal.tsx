@@ -50,6 +50,8 @@ const useStyles = makeStyles((theme) =>
       display: 'flex',
       alignItems: 'center',
       justifyContent: 'center',
+      width: '90%',
+      margin: '0 auto',
     },
     content: {
       backgroundColor: theme.palette.common.white,
