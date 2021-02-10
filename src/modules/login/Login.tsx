@@ -75,7 +75,7 @@ const useStyles = makeStyles((theme) => ({
   formContainer: {
     display: 'grid',
     gridTemplateColumns: '100%',
-    gridTemplateRows: '15vh 85vh',
+    gridTemplateRows: '20vh 80vh',
     justifyContent: 'center',
 
     [theme.breakpoints.up('sm')]: {
@@ -83,7 +83,13 @@ const useStyles = makeStyles((theme) => ({
       gridTemplateRows: '25vh 75vh',
     },
 
+    [theme.breakpoints.up('md')]: {
+      margin: '0 2.5rem',
+      gridTemplateColumns: '100%',
+    },
+
     [theme.breakpoints.up('lg')]: {
+      gridTemplateColumns: '49.6rem',
       justifyContent: 'flex-start',
       marginLeft: '15rem',
     },

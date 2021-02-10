@@ -4,6 +4,7 @@ import {
   CheckboxProps,
   Checkbox as MaterialCheckbox,
   makeStyles,
+  Typography,
 } from '@material-ui/core';
 
 import { Checked, Unchecked } from 'assets/icons';
@@ -21,6 +22,7 @@ export const Checkbox: React.FC<Props> = ({ checked, label, ...rest }) => {
     <FormControlLabel
       control={
         <MaterialCheckbox
+          checked={checked}
           {...rest}
           name={label}
           color='primary'
@@ -32,7 +34,7 @@ export const Checkbox: React.FC<Props> = ({ checked, label, ...rest }) => {
           icon={<Unchecked />}
         />
       }
-      label={label}
+      label={<Typography className={classes.label}>{label}</Typography>}
     />
   );
 };
@@ -46,5 +48,8 @@ const useStyles = makeStyles((theme) => ({
     display: 'flex',
     justifyContent: 'center',
     alignItems: 'center',
+  },
+  label: {
+    fontSize: globalStyles.fontSize.small,
   },
 }));

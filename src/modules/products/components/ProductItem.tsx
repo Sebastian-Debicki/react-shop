@@ -1,5 +1,5 @@
 import React from 'react';
-import { makeStyles } from '@material-ui/core';
+import { makeStyles, styled } from '@material-ui/core';
 
 import { Product, Button, Rating } from 'common';
 import { globalStyles } from 'core';
@@ -29,7 +29,11 @@ export const ProductItem: React.FC<Prop> = ({ product, onButtonClick }) => {
         <div>
           <Rating rating={product.rating} containerClassName={classes.rating} />
 
-          <Button variant='filled' onClick={() => onButtonClick(product)}>
+          <Button
+            variant='filled'
+            onClick={() => onButtonClick(product)}
+            disabled={!product.active}
+          >
             Show details
           </Button>
         </div>

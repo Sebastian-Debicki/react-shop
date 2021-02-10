@@ -7,19 +7,21 @@ interface Props extends ButtonHTMLAttributes<HTMLButtonElement> {
   variant: 'filled' | 'outline';
   size?: 'small' | 'big';
   className?: string;
+  disabled?: boolean;
 }
 
 export const Button: React.FC<Props> = ({
   children,
   variant,
   className,
+  disabled = false,
   size = 'big',
   ...rest
 }) => {
   const classes = useStyles();
 
   const buttonType = {
-    filled: classes.filled,
+    filled: `${classes.filled} ${disabled && classes.filledDisabled}`,
     outline: classes.outline,
   }[variant];
 
@@ -27,9 +29,10 @@ export const Button: React.FC<Props> = ({
     <button
       className={`${classes.base} ${buttonType} ${className} 
       ${size === 'small' && classes.small}`}
+      disabled={disabled}
       {...rest}
     >
-      {children}
+      {disabled ? 'Unavailable' : children}
     </button>
   );
 };
@@ -58,5 +61,9 @@ const useStyles = makeStyles((theme) => ({
 
   small: {
     padding: '1.1rem 0',
+  },
+
+  filledDisabled: {
+    backgroundColor: theme.palette.text.secondary,
   },
 }));

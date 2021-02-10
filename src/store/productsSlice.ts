@@ -7,10 +7,18 @@ export type State = {
   loading: boolean;
   products?: PaginatedRes<Product>;
   error?: string;
+  query: ProductsQuery;
 };
 
 export const initialState: State = {
   loading: false,
+  query: {
+    limit: 8,
+    page: 1,
+    search: '',
+    active: false,
+    promo: false,
+  },
 };
 
 const slice = createSlice({
@@ -18,7 +26,7 @@ const slice = createSlice({
   initialState,
   reducers: {
     getProductsRequest(state) {
-      return { ...state, loading: state.products === undefined ? true : false };
+      return { ...state, loading: true };
     },
     getProductsSucceed(
       state,
@@ -28,6 +36,9 @@ const slice = createSlice({
     },
     getProductsFailed(state, { payload }: PayloadAction<string>) {
       return { ...state, loading: false, error: payload };
+    },
+    changeQuery(state, { payload }: PayloadAction<ProductsQuery>) {
+      return { ...state, query: payload };
     },
   },
 });
@@ -44,6 +55,10 @@ export const getProducts = (query: ProductsQuery) => (dispatch: Dispatch) => {
     .catch((err) => {
       dispatch(actions.getProductsFailed(err));
     });
+};
+
+export const changeQuery = (query: ProductsQuery) => (dispatch: Dispatch) => {
+  dispatch(actions.changeQuery(query));
 };
 
 export const { reducer } = slice;

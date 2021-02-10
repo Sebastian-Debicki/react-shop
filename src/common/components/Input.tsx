@@ -5,13 +5,11 @@ import { globalStyles } from 'core';
 
 interface Props extends InputHTMLAttributes<HTMLInputElement> {
   label?: string;
-  placeholderColor?: 'light' | 'dark';
   containerClassName?: string;
 }
 
 export const Input: React.FC<Props> = ({
   label,
-  placeholderColor = 'light',
   containerClassName,
   ...rest
 }) => {
@@ -37,6 +35,10 @@ const useStyles = makeStyles((theme) => ({
     fontSize: globalStyles.fontSize.small,
     borderRadius: globalStyles.borderRadius.normal,
     border: `1px solid ${theme.palette.action.active}`,
+
+    '&::placeholder': {
+      color: theme.palette.text.primary,
+    },
   },
   label: {
     display: 'block',

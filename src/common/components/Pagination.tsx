@@ -4,16 +4,19 @@ import { usePagination } from '@material-ui/lab/Pagination';
 
 interface Props {
   numberOfPages?: number;
+  page: number;
   onChangePage: (page: number) => void;
 }
 
 export const Pagination: React.FC<Props> = ({
   numberOfPages,
+  page,
   onChangePage,
 }) => {
   const classes = useStyles();
 
   const { items } = usePagination({
+    page,
     count: numberOfPages,
     hidePrevButton: true,
     hideNextButton: true,
