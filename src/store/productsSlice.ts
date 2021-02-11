@@ -1,16 +1,30 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 
 import { Dispatch } from 'store';
-import { Product, PaginatedRes, productsService, ProductsQuery } from 'common';
+import {
+  Product,
+  PaginatedRes,
+  productsService,
+  ProductsQuery,
+  Error,
+} from 'common';
 
 export type State = {
   loading: boolean;
   products?: PaginatedRes<Product>;
   error?: string;
+  query: ProductsQuery;
 };
 
 export const initialState: State = {
   loading: false,
+  query: {
+    limit: 8,
+    page: 1,
+    search: '',
+    active: false,
+    promo: false,
+  },
 };
 
 const slice = createSlice({
@@ -29,6 +43,9 @@ const slice = createSlice({
     getProductsFailed(state, { payload }: PayloadAction<string>) {
       return { ...state, loading: false, error: payload };
     },
+    changeQuery(state, { payload }: PayloadAction<ProductsQuery>) {
+      return { ...state, query: payload };
+    },
   },
 });
 
@@ -41,9 +58,13 @@ export const getProducts = (query: ProductsQuery) => (dispatch: Dispatch) => {
     .then((res) => {
       dispatch(actions.getProductsSucceed(res.data));
     })
-    .catch((err) => {
-      dispatch(actions.getProductsFailed(err));
+    .catch((err: Error) => {
+      dispatch(actions.getProductsFailed(err.message));
     });
+};
+
+export const changeQuery = (query: ProductsQuery) => (dispatch: Dispatch) => {
+  dispatch(actions.changeQuery(query));
 };
 
 export const { reducer } = slice;

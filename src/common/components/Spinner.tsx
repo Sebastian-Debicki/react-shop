@@ -6,7 +6,11 @@ import { Spinner as IconSpinner } from 'assets/icons';
 export const Spinner: React.FC = () => {
   const classes = useStyles();
 
-  return <IconSpinner className={classes.spinner} />;
+  return (
+    <div className={classes.spinnerContainer}>
+      <IconSpinner className={classes.spinner} />
+    </div>
+  );
 };
 
 const useStyles = makeStyles({
@@ -20,9 +24,11 @@ const useStyles = makeStyles({
   },
   spinner: {
     animation: '$spinner infinite linear 1.5s',
+  },
+  spinnerContainer: {
     position: 'fixed',
     top: '50%',
     left: '50%',
-    transform: 'translate(-50%)',
+    transform: 'translate(-50%, -50%)',
   },
 });

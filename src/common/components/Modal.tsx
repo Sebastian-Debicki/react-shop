@@ -7,6 +7,7 @@ import {
   Fade,
 } from '@material-ui/core';
 import { globalStyles } from 'core';
+import { hexWithOpacity } from 'common/helpers';
 
 interface Props {
   onClose: () => void;
@@ -60,7 +61,7 @@ const useStyles = makeStyles((theme) =>
       borderRadius: globalStyles.borderRadius.normal,
     },
     backdrop: {
-      backgroundColor: `#1A1B1De9`,
+      backgroundColor: hexWithOpacity(theme.palette.text.primary, 0.9),
     },
   })
 );

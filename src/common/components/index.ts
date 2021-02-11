@@ -6,3 +6,4 @@ export { Pagination } from './Pagination';
 export { Spinner } from './Spinner';
 export { Modal } from './Modal';
 export { Rating } from './Rating';
+export { NothingFound } from './NothingFound';

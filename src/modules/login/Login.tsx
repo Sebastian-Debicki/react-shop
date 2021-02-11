@@ -1,6 +1,6 @@
 import React from 'react';
 import { useHistory } from 'react-router-dom';
-import { makeStyles } from '@material-ui/core';
+import { makeStyles, Typography } from '@material-ui/core';
 
 import loginImage from 'assets/images/loginImage.png';
 import { Logo } from 'assets/icons';
@@ -13,7 +13,7 @@ export const Login = () => {
   const classes = useStyles();
 
   return (
-    <div className={classes.mainContainer}>
+    <section className={classes.mainContainer}>
       <img src={loginImage} className={classes.image} alt='man on the bridge' />
 
       <div className={classes.formContainer}>
@@ -22,7 +22,9 @@ export const Login = () => {
           className={classes.logo}
         />
         <form className={classes.form}>
-          <h2 className={classes.header}>Login</h2>
+          <Typography variant='h2' className={classes.header}>
+            Login
+          </Typography>
           <Input
             label='Login'
             placeholder='Enter username'
@@ -35,7 +37,7 @@ export const Login = () => {
           <button className={classes.forgotButton}>Forgot password?</button>
         </form>
       </div>
-    </div>
+    </section>
   );
 };
 
@@ -68,11 +70,12 @@ const useStyles = makeStyles((theme) => ({
   },
   header: {
     fontSize: globalStyles.fontSize.header2,
+    marginBottom: '3rem',
   },
   formContainer: {
     display: 'grid',
     gridTemplateColumns: '100%',
-    gridTemplateRows: '15vh 85vh',
+    gridTemplateRows: '20vh 80vh',
     justifyContent: 'center',
 
     [theme.breakpoints.up('sm')]: {
@@ -80,7 +83,13 @@ const useStyles = makeStyles((theme) => ({
       gridTemplateRows: '25vh 75vh',
     },
 
+    [theme.breakpoints.up('md')]: {
+      margin: '0 2.5rem',
+      gridTemplateColumns: '100%',
+    },
+
     [theme.breakpoints.up('lg')]: {
+      gridTemplateColumns: '49.6rem',
       justifyContent: 'flex-start',
       marginLeft: '15rem',
     },
