@@ -6,3 +6,4 @@ export { ReactComponent as Close } from './close.svg';
 export { ReactComponent as Checked } from './checked.svg';
 export { ReactComponent as Unchecked } from './unchecked.svg';
 export { ReactComponent as Empty } from './empty.svg';
+export { ReactComponent as Search } from './search.svg';

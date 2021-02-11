@@ -1,7 +1,13 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 
 import { Dispatch } from 'store';
-import { Product, PaginatedRes, productsService, ProductsQuery } from 'common';
+import {
+  Product,
+  PaginatedRes,
+  productsService,
+  ProductsQuery,
+  Error,
+} from 'common';
 
 export type State = {
   loading: boolean;
@@ -52,8 +58,8 @@ export const getProducts = (query: ProductsQuery) => (dispatch: Dispatch) => {
     .then((res) => {
       dispatch(actions.getProductsSucceed(res.data));
     })
-    .catch((err) => {
-      dispatch(actions.getProductsFailed(err));
+    .catch((err: Error) => {
+      dispatch(actions.getProductsFailed(err.message));
     });
 };
 

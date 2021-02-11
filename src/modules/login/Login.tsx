@@ -13,7 +13,7 @@ export const Login = () => {
   const classes = useStyles();
 
   return (
-    <div className={classes.mainContainer}>
+    <section className={classes.mainContainer}>
       <img src={loginImage} className={classes.image} alt='man on the bridge' />
 
       <div className={classes.formContainer}>
@@ -37,7 +37,7 @@ export const Login = () => {
           <button className={classes.forgotButton}>Forgot password?</button>
         </form>
       </div>
-    </div>
+    </section>
   );
 };
 

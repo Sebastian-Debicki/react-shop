@@ -1,5 +1,5 @@
 import React, { ButtonHTMLAttributes } from 'react';
-import { makeStyles } from '@material-ui/core';
+import { makeStyles, Theme } from '@material-ui/core';
 
 import { globalStyles } from 'core';
 
@@ -18,17 +18,16 @@ export const Button: React.FC<Props> = ({
   size = 'big',
   ...rest
 }) => {
-  const classes = useStyles();
+  const classes = useStyles({ disabled, size });
 
   const buttonType = {
-    filled: `${classes.filled} ${disabled && classes.filledDisabled}`,
+    filled: `${classes.filled}`,
     outline: classes.outline,
   }[variant];
 
   return (
     <button
-      className={`${classes.base} ${buttonType} ${className} 
-      ${size === 'small' && classes.small}`}
+      className={`${classes.base} ${buttonType} ${className}`}
       disabled={disabled}
       {...rest}
     >
@@ -37,33 +36,33 @@ export const Button: React.FC<Props> = ({
   );
 };
 
-const useStyles = makeStyles((theme) => ({
-  base: {
-    display: 'block',
-    border: 'none',
-    width: '100%',
-    padding: '1.6rem',
-    borderRadius: globalStyles.borderRadius.small,
-    fontSize: globalStyles.fontSize.small,
-    fontFamily: 'Nunito, sans-serif',
-  },
+const useStyles = makeStyles<Theme, Pick<Props, 'disabled' | 'size'>>(
+  (theme) => ({
+    base: {
+      display: 'block',
+      border: 'none',
+      width: '100%',
+      padding: ({ size }) => (size === 'small' ? '1.1rem' : '1.6rem'),
+      borderRadius: globalStyles.borderRadius.small,
+      fontSize: globalStyles.fontSize.small,
+      fontFamily: 'Nunito, sans-serif',
+    },
 
-  filled: {
-    backgroundColor: theme.palette.primary.main,
-    color: theme.palette.common.white,
-  },
+    filled: {
+      backgroundColor: ({ disabled }) =>
+        disabled ? theme.palette.text.secondary : theme.palette.primary.main,
+      color: theme.palette.common.white,
 
-  outline: {
-    backgroundColor: theme.palette.common.white,
-    border: `1px solid ${theme.palette.primary.main}`,
-    color: theme.palette.primary.main,
-  },
+      '&:hover': {
+        backgroundColor: ({ disabled }) =>
+          disabled ? undefined : theme.palette.primary.dark,
+      },
+    },
 
-  small: {
-    padding: '1.1rem 0',
-  },
-
-  filledDisabled: {
-    backgroundColor: theme.palette.text.secondary,
-  },
-}));
+    outline: {
+      backgroundColor: theme.palette.common.white,
+      border: `1px solid ${theme.palette.primary.main}`,
+      color: theme.palette.primary.main,
+    },
+  })
+);

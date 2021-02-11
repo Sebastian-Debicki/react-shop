@@ -18,7 +18,7 @@ export const Navbar: React.FC = () => {
 
   return (
     <div className={classes.container}>
-      <nav className={classes.mainContainer}>
+      <nav className={classes.nav}>
         <Logo />
 
         <Button
@@ -37,6 +37,8 @@ export const Navbar: React.FC = () => {
             dispatch(changeQuery({ ...query, search: e.target.value, page: 1 }))
           }
           containerClassName={classes.inputContainer}
+          placeholderVariant='dark'
+          withSerachIcon
         />
 
         <div className={classes.checkboxContainer}>
@@ -74,7 +76,7 @@ const useStyles = makeStyles((theme) => ({
     backgroundColor: theme.palette.common.white,
   },
 
-  mainContainer: {
+  nav: {
     padding: '4.8rem 2.4rem 3.2rem',
     display: 'grid',
     gridTemplateColumns: '1fr 1fr',

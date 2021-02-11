@@ -74,10 +74,18 @@ const useStyles = makeStyles((theme) => ({
     textTransform: 'capitalize',
   },
   lastFirstButton: {
-    margin: '0 2.5rem',
+    margin: '0 1rem',
+
+    [theme.breakpoints.up('sm')]: {
+      margin: '0 2.5rem',
+    },
   },
   numberButton: {
-    margin: '0 0.8rem',
+    margin: '0 0.2rem',
+
+    [theme.breakpoints.up('sm')]: {
+      margin: '0 0.8rem',
+    },
   },
   numberButtonActive: {
     color: theme.palette.primary.main,
@@ -87,6 +95,8 @@ const useStyles = makeStyles((theme) => ({
     padding: 0,
     margin: 0,
     display: 'flex',
+    flexWrap: 'wrap',
     alignItems: 'center',
+    justifyContent: 'center',
   },
 }));

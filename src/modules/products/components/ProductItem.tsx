@@ -60,6 +60,7 @@ const useStyles = makeStyles((theme) => ({
     width: '100%',
     objectFit: 'cover',
     objectPosition: '20% 10%',
+    minHeight: '21.6rem',
   },
   descriptionContainer: {
     padding: '0.8rem 1.6rem 2.4rem',
