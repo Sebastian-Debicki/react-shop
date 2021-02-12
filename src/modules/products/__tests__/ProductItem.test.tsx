@@ -5,7 +5,7 @@ import { productsMock } from 'common';
 import { ProductItem } from '../components/ProductItem';
 
 describe('ProductDetails', () => {
-  test('Displays all information', async () => {
+  test('Displays all informations', async () => {
     const { getByText, getByAltText, getAllByText } = render(
       <ProductItem product={productsMock.items[0]} onButtonClick={jest.fn()} />
     );

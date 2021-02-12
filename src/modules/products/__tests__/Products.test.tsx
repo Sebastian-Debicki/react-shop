@@ -6,15 +6,14 @@ import { render } from 'tests';
 import { queryMock, productsMock } from 'common';
 import { Products } from '../Products';
 
-let store: any;
-beforeEach(() => {
+describe('Products', () => {
   const initialState = {
     query: queryMock,
     products: productsMock,
     loading: false,
   };
   const mockStore = configureStore();
-  store = mockStore(initialState);
+  const store = mockStore(initialState);
 
   const spy = jest.spyOn(redux, 'useSelector');
   spy.mockReturnValue(initialState);
@@ -22,15 +21,15 @@ beforeEach(() => {
   const useDispatchSpy = jest.spyOn(redux, 'useDispatch');
   const mockDispatchFn = jest.fn();
   useDispatchSpy.mockReturnValue(mockDispatchFn);
-});
 
-describe('Products', () => {
+  const wrapper = (
+    <redux.Provider store={store}>
+      <Products />
+    </redux.Provider>
+  );
+
   test('Renders navbar elements', async () => {
-    const { getByText, getByPlaceholderText, getAllByText } = render(
-      <redux.Provider store={store}>
-        <Products />
-      </redux.Provider>
-    );
+    const { getByText, getByPlaceholderText, getAllByText } = render(wrapper);
 
     expect(getByText('logo.svg')).toBeInTheDocument();
     expect(getByText('Active')).toBeInTheDocument();
@@ -40,11 +39,7 @@ describe('Products', () => {
   });
 
   test('Renders list item elements', async () => {
-    const { getByText } = render(
-      <redux.Provider store={store}>
-        <Products />
-      </redux.Provider>
-    );
+    const { getByText } = render(wrapper);
     expect(getByText(productsMock.items[0].name)).toBeInTheDocument();
     expect(getByText(productsMock.items[0].description)).toBeInTheDocument();
     expect(getByText(productsMock.items[1].name)).toBeInTheDocument();
@@ -54,43 +49,21 @@ describe('Products', () => {
   });
 
   test('Renders correct number of list items', async () => {
-    const { getAllByAltText } = render(
-      <redux.Provider store={store}>
-        <Products />
-      </redux.Provider>
-    );
-
-    expect(getAllByAltText('product').length).toBe(3);
-  });
-
-  test('Renders correct number of list items', async () => {
-    const { getAllByAltText } = render(
-      <redux.Provider store={store}>
-        <Products />
-      </redux.Provider>
-    );
+    const { getAllByAltText } = render(wrapper);
 
     expect(getAllByAltText('product').length).toBe(productsMock.items.length);
   });
 
-  test('Renders correct number of active buttons', async () => {
-    const { getAllByText } = render(
-      <redux.Provider store={store}>
-        <Products />
-      </redux.Provider>
-    );
+  test('Renders correct number of active items', async () => {
+    const { getAllByText } = render(wrapper);
 
     expect(getAllByText('Show details').length).toBe(
       productsMock.items.filter((p) => p.active).length
     );
   });
 
-  test('Renders correct number of unactive buttons', async () => {
-    const { getAllByText } = render(
-      <redux.Provider store={store}>
-        <Products />
-      </redux.Provider>
-    );
+  test('Renders correct number of unactive items', async () => {
+    const { getAllByText } = render(wrapper);
 
     expect(getAllByText('Unavailable').length).toBe(
       productsMock.items.filter((p) => !p.active).length
@@ -98,11 +71,7 @@ describe('Products', () => {
   });
 
   test('Renders correct number of promo elements', async () => {
-    const { getAllByText } = render(
-      <redux.Provider store={store}>
-        <Products />
-      </redux.Provider>
-    );
+    const { getAllByText } = render(wrapper);
 
     // +1 means that is one more Promo text in navbar checkbox label
     expect(getAllByText('Promo').length).toBe(

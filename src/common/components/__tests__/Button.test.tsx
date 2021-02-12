@@ -14,6 +14,7 @@ describe('Button', () => {
     const { getByText } = render(<Button variant='filled'>button-test</Button>);
 
     expect(getByText('button-test').className).toContain('filled');
+    expect(getByText('button-test').className).not.toContain('outline');
   });
 
   test('Renders outline button variant', async () => {
@@ -22,6 +23,7 @@ describe('Button', () => {
     );
 
     expect(getByText('button-test').className).toContain('outline');
+    expect(getByText('button-test').className).not.toContain('filled');
   });
 
   test('Display correct text when is disabled', async () => {

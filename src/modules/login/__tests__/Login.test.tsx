@@ -6,7 +6,7 @@ import { render } from 'tests';
 import { Login } from '../Login';
 
 describe('Login', () => {
-  test('Displays all information', async () => {
+  test('Displays all informations', async () => {
     const initialState = {};
     const mockStore = configureStore();
     const store = mockStore(initialState);

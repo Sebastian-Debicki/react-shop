@@ -4,7 +4,7 @@ import { render } from 'tests';
 import { Pagination } from '../Pagination';
 
 describe('Pagination', () => {
-  test('Displays all information', async () => {
+  test('Displays all informations', async () => {
     const { getByText } = render(
       <Pagination page={1} numberOfPages={10} onChangePage={jest.fn()} />
     );
