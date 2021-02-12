@@ -26,7 +26,7 @@ export const Login = () => {
             Login
           </Typography>
           <Input
-            label='Login'
+            label='Username'
             placeholder='Enter username'
             containerClassName={classes.input}
           />

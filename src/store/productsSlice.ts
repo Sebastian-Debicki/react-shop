@@ -6,7 +6,7 @@ import {
   PaginatedRes,
   productsService,
   ProductsQuery,
-  Error,
+  ErrorRes,
 } from 'common';
 
 export type State = {
@@ -58,7 +58,7 @@ export const getProducts = (query: ProductsQuery) => (dispatch: Dispatch) => {
     .then((res) => {
       dispatch(actions.getProductsSucceed(res.data));
     })
-    .catch((err: Error) => {
+    .catch((err: ErrorRes) => {
       dispatch(actions.getProductsFailed(err.message));
     });
 };

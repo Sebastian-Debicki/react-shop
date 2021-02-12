@@ -18,30 +18,24 @@ export const Modal: React.FC<Props> = ({ children, onClose, open }) => {
   const classes = useStyles();
 
   return (
-    <div>
-      <MaterialModal
-        aria-labelledby='transition-modal-title'
-        aria-describedby='transition-modal-description'
-        className={classes.modal}
-        open={open}
-        onClose={onClose}
-        closeAfterTransition
-        BackdropComponent={() => (
-          <Backdrop
-            open={open}
-            className={classes.backdrop}
-            onClick={onClose}
-          />
-        )}
-        BackdropProps={{
-          timeout: 500,
-        }}
-      >
-        <Fade in={open}>
-          <div className={classes.content}>{children}</div>
-        </Fade>
-      </MaterialModal>
-    </div>
+    <MaterialModal
+      aria-labelledby='transition-modal-title'
+      aria-describedby='transition-modal-description'
+      className={classes.modal}
+      open={open}
+      onClose={onClose}
+      closeAfterTransition
+      BackdropComponent={() => (
+        <Backdrop open={open} className={classes.backdrop} onClick={onClose} />
+      )}
+      BackdropProps={{
+        timeout: 500,
+      }}
+    >
+      <Fade in={open}>
+        <div className={classes.content}>{children}</div>
+      </Fade>
+    </MaterialModal>
   );
 };
 

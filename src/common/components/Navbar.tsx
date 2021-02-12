@@ -34,11 +34,17 @@ export const Navbar: React.FC = () => {
           placeholder='Search'
           value={query.search}
           onChange={(e) =>
-            dispatch(changeQuery({ ...query, search: e.target.value, page: 1 }))
+            dispatch(
+              changeQuery({
+                ...query,
+                search: e.target.value,
+                page: 1,
+              })
+            )
           }
           containerClassName={classes.inputContainer}
           placeholderVariant='dark'
-          withSerachIcon
+          withSearchIcon
         />
 
         <div className={classes.checkboxContainer}>

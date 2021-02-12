@@ -4,7 +4,7 @@ export interface Product {
   description: string;
   rating: number;
   image: string;
-  promo: string;
+  promo: boolean;
   active: boolean;
 }
 

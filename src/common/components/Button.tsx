@@ -21,7 +21,7 @@ export const Button: React.FC<Props> = ({
   const classes = useStyles({ disabled, size });
 
   const buttonType = {
-    filled: `${classes.filled}`,
+    filled: classes.filled,
     outline: classes.outline,
   }[variant];
 
