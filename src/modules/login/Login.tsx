@@ -2,7 +2,7 @@ import React from 'react';
 import { useHistory } from 'react-router-dom';
 import { makeStyles, Typography } from '@material-ui/core';
 
-import loginImage from 'assets/images/loginImage.png';
+import { loginImage } from 'assets/images';
 import { Logo } from 'assets/icons';
 import { AppRoute } from 'routing';
 import { Input, Button } from 'common';

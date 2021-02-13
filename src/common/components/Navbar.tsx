@@ -2,6 +2,7 @@ import React from 'react';
 import { useHistory } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { makeStyles } from '@material-ui/core';
+import { debounce } from 'debounce';
 
 import { Input } from './Input';
 import { Checkbox } from './Checkbox';
@@ -15,6 +16,10 @@ export const Navbar: React.FC = () => {
   const { query } = useSelector(productsSelector);
   const history = useHistory();
   const classes = useStyles();
+
+  const debouncedInputChange = debounce((search: string) => {
+    dispatch(changeQuery({ ...query, search, page: 1 }));
+  }, 800);
 
   return (
     <div className={classes.container}>
@@ -32,16 +37,7 @@ export const Navbar: React.FC = () => {
 
         <Input
           placeholder='Search'
-          value={query.search}
-          onChange={(e) =>
-            dispatch(
-              changeQuery({
-                ...query,
-                search: e.target.value,
-                page: 1,
-              })
-            )
-          }
+          onChange={(e) => debouncedInputChange(e.target.value)}
           containerClassName={classes.inputContainer}
           placeholderVariant='dark'
           withSearchIcon

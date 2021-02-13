@@ -32,19 +32,21 @@ const slice = createSlice({
   initialState,
   reducers: {
     getProductsRequest(state) {
-      return { ...state, loading: true };
+      state.loading = true;
     },
     getProductsSucceed(
       state,
       { payload }: PayloadAction<PaginatedRes<Product>>
     ) {
-      return { ...state, loading: false, products: payload };
+      state.loading = false;
+      state.products = payload;
     },
     getProductsFailed(state, { payload }: PayloadAction<string>) {
-      return { ...state, loading: false, error: payload };
+      state.loading = false;
+      state.error = payload;
     },
     changeQuery(state, { payload }: PayloadAction<ProductsQuery>) {
-      return { ...state, query: payload };
+      state.query = payload;
     },
   },
 });
