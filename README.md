@@ -8,7 +8,6 @@ To start the development:
 mkdir new-project
 cd new-project/
 git clone git@github.com:Sebastian-Debicki/react-shop.git .
-rm -r .git
 npm install
 ```
 
