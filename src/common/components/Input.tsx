@@ -8,14 +8,14 @@ interface Props extends InputHTMLAttributes<HTMLInputElement> {
   label?: string;
   containerClassName?: string;
   placeholderVariant?: 'light' | 'dark';
-  withSerachIcon?: boolean;
+  withSearchIcon?: boolean;
 }
 
 export const Input: React.FC<Props> = ({
   label,
   containerClassName,
   placeholderVariant = 'light',
-  withSerachIcon,
+  withSearchIcon,
   ...rest
 }) => {
   const classes = useStyles({ placeholderVariant });
@@ -26,7 +26,7 @@ export const Input: React.FC<Props> = ({
 
       <div className={classes.inputWithIconContainer}>
         <input className={classes.input} {...rest} />
-        {withSerachIcon && <Search className={classes.searchIcon} />}
+        {withSearchIcon && <Search className={classes.searchIcon} />}
       </div>
     </div>
   );

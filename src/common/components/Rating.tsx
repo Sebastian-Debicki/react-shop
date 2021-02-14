@@ -12,20 +12,17 @@ export const Rating: React.FC<Props> = ({ rating, containerClassName }) => {
   const classes = useStyles();
 
   return (
-    <div className={containerClassName}>
+    <div className={`${containerClassName} ${classes.container}`}>
       {[1, 2, 3, 4, 5].map((rate) =>
-        rate <= rating ? (
-          <StarFilled key={rate} className={classes.star} />
-        ) : (
-          <StarEmpty key={rate} className={classes.star} />
-        )
+        rate <= rating ? <StarFilled key={rate} /> : <StarEmpty key={rate} />
       )}
     </div>
   );
 };
 
 const useStyles = makeStyles(() => ({
-  star: {
-    marginRight: '1.6rem',
+  container: {
+    display: 'flex',
+    gap: '1.5rem',
   },
 }));

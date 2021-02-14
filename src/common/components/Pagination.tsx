@@ -29,33 +29,34 @@ export const Pagination: React.FC<Props> = ({
     <nav className={classes.container}>
       <ul className={classes.list}>
         {items.map(({ page, type, selected, ...item }, index) => {
-          let children = null;
           if (type === 'start-ellipsis' || type === 'end-ellipsis')
-            children = '…';
+            return <li key={index}>…</li>;
           else if (type === 'page')
-            children = (
-              <button
-                className={`${classes.button} ${classes.numberButton} ${
-                  selected && classes.numberButtonActive
-                }`}
-                type='button'
-                {...item}
-              >
-                {page}
-              </button>
+            return (
+              <li key={index}>
+                <button
+                  className={`${classes.button} ${classes.numberButton} ${
+                    selected && classes.numberButtonActive
+                  }`}
+                  type='button'
+                  {...item}
+                >
+                  {page}
+                </button>
+              </li>
             );
           else
-            children = (
-              <button
-                className={`${classes.button} ${classes.lastFirstButton}`}
-                type='button'
-                {...item}
-              >
-                {type}
-              </button>
+            return (
+              <li key={index}>
+                <button
+                  className={`${classes.button} ${classes.lastFirstButton}`}
+                  type='button'
+                  {...item}
+                >
+                  {type}
+                </button>
+              </li>
             );
-
-          return <li key={index}>{children}</li>;
         })}
       </ul>
     </nav>

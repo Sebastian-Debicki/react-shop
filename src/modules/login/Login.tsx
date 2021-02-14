@@ -2,7 +2,7 @@ import React from 'react';
 import { useHistory } from 'react-router-dom';
 import { makeStyles, Typography } from '@material-ui/core';
 
-import loginImage from 'assets/images/loginImage.png';
+import { loginImage } from 'assets/images';
 import { Logo } from 'assets/icons';
 import { AppRoute } from 'routing';
 import { Input, Button } from 'common';
@@ -26,12 +26,16 @@ export const Login = () => {
             Login
           </Typography>
           <Input
-            label='Login'
+            label='Username'
             placeholder='Enter username'
             containerClassName={classes.input}
           />
           <Input label='Password' placeholder='Enter password' />
-          <Button className={classes.button} variant='filled'>
+          <Button
+            className={classes.button}
+            variant='filled'
+            onClick={() => history.push(AppRoute.home)}
+          >
             Log in
           </Button>
           <button className={classes.forgotButton}>Forgot password?</button>
