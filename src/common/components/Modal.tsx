@@ -19,8 +19,6 @@ export const Modal: React.FC<Props> = ({ children, onClose, open }) => {
 
   return (
     <MaterialModal
-      aria-labelledby='transition-modal-title'
-      aria-describedby='transition-modal-description'
       className={classes.modal}
       open={open}
       onClose={onClose}

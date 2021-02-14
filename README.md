@@ -7,14 +7,9 @@ To start the development:
 ```
 mkdir new-project
 cd new-project/
-git clone git@github.com:TheSoftwareHouse/react-interview-starter-ts.git .
+git clone git@github.com:Sebastian-Debicki/react-shop.git .
 rm -r .git
 npm install
-cd e2e
-npm install
-cd ..
-cp .env.dist .env
-cp .env.e2e.dist ./e2e/.env
 ```
 
 where `new-project` is your desired folder.
@@ -26,14 +21,6 @@ For E2E testing we are using the [Cypress](https://www.cypress.io/) framework. I
 ## Available Scripts
 
 In the project directory, you can run:
-
-### `e2e:run`
-
-Runs Cypress E2E tests in a headless mode (the browser window is not visible)
-
-### `e2e:open`
-
-Opens the Cypress UI, allowing to run and watch E2E tests
 
 ### `npm start`
 

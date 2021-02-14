@@ -31,7 +31,11 @@ export const Login = () => {
             containerClassName={classes.input}
           />
           <Input label='Password' placeholder='Enter password' />
-          <Button className={classes.button} variant='filled'>
+          <Button
+            className={classes.button}
+            variant='filled'
+            onClick={() => history.push(AppRoute.home)}
+          >
             Log in
           </Button>
           <button className={classes.forgotButton}>Forgot password?</button>
